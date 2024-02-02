@@ -1,48 +1,29 @@
 import React from "react";
 import Tab from "./Tab";
+import { colors, tabs } from "./tabConfig";
 
 interface TabsProps {
   activeKeyword: string;
   setActiveKeyword: (keyword: string) => void;
 }
 
-const Tabs: React.FC<TabsProps> = ({ activeKeyword, setActiveKeyword }) => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-around",
-      marginBottom: "20px",
-      borderBottom: `4px solid ${
-        activeKeyword === "ルセラフィム"
-          ? "red"
-          : activeKeyword === "NewJeans"
-          ? "orange"
-          : "green"
-      }`,
-    }}
-  >
-    <Tab
-      activeKeyword={activeKeyword}
-      setActiveKeyword={setActiveKeyword}
-      label="LE SSERAFIM"
-      color="red"
-      searchKeyword="ルセラフィム"
-    />
-    <Tab
-      activeKeyword={activeKeyword}
-      setActiveKeyword={setActiveKeyword}
-      label="NewJeans"
-      color="orange"
-      searchKeyword="NewJeans"
-    />
-    <Tab
-      activeKeyword={activeKeyword}
-      setActiveKeyword={setActiveKeyword}
-      label="aespa"
-      color="green"
-      searchKeyword="aespa"
-    />
-  </div>
-);
+const Tabs: React.FC<TabsProps> = ({ activeKeyword, setActiveKeyword }) => {
+  const color = colors[activeKeyword] || colors["default"];
+  const classes = `flex flex-nowrap justify-start mb-5 border-b-4 ${color.border} overflow-x-auto scrollbar-hide`;
+
+  return (
+    <div className={classes}>
+      {tabs.map((tab) => (
+        <Tab
+          key={tab.searchKeyword}
+          activeKeyword={activeKeyword}
+          setActiveKeyword={setActiveKeyword}
+          label={tab.label}
+          searchKeyword={tab.searchKeyword}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default Tabs;

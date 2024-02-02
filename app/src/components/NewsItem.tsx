@@ -22,46 +22,18 @@ const NewsItem: React.FC<NewsItemProps> = ({ item }) => {
   return (
     <div
       onClick={() => window.open(item.url, "_blank")}
-      style={{
-        height: "auto",
-        width: "100%",
-        borderColor: "lightgray",
-        borderWidth: "0.4px",
-        display: "flex",
-        cursor: "pointer",
-        border: "1px solid lightgray",
-        borderRadius: "5px",
-        padding: "10px",
-        alignItems: "flex-start",
-      }}
+      className="h-auto w-full border border-gray-200 flex cursor-pointer rounded p-2 items-start"
     >
-      <div style={{ width: "25%", minWidth: "150px", marginRight: "10px" }}>
+      <div className="w-1/4 min-w-[150px] mr-2">
         <img
-          style={{ width: "100%", height: "120px", objectFit: "contain" }}
+          className="w-full h-[120px] object-contain"
           src={item.urlToImage}
           alt={item.title}
         />
       </div>
-      <div
-        style={{
-          flex: 1,
-          padding: "16px",
-          justifyContent: "space-between",
-          marginLeft: "10px",
-        }}
-      >
-        <p style={{ fontSize: "16px", textAlign: "left" }}>{item.title}</p>{" "}
-        <p
-          style={{
-            fontSize: "12px",
-            color: "darkgray",
-            marginTop: "10px",
-            textAlign: "left",
-          }}
-        >
-          {" "}
-          {publish_date}
-        </p>
+      <div className="flex-1 p-4 space-y-2 ml-2">
+        <p className="text-lg text-left">{item.title}</p>
+        <p className="text-sm text-gray-600 mt-2 text-left">{publish_date}</p>
       </div>
     </div>
   );
